@@ -1,5 +1,279 @@
 <?php
+// Start **** For Landing DC ***
+if( function_exists('acf_add_local_field_group') ):
 
+    acf_add_local_field_group(array(
+        'key' => 'group_5e1c2eb48f8d4',
+        'title' => 'For Landing DC',
+        'fields' => array(
+            array(
+                'key' => 'field_5e1c3c21aa477',
+                'label' => 'Title',
+                'name' => 'title',
+                'type' => 'textarea',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => '',
+                'maxlength' => '',
+                'rows' => 2,
+                'new_lines' => 'br',
+            ),
+            array(
+                'key' => 'field_5e1c3c10aa476',
+                'label' => 'Email',
+                'name' => 'email',
+                'type' => 'text',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+                'maxlength' => '',
+            ),
+            array(
+                'key' => 'field_5e1c3c48aa478',
+                'label' => 'Site',
+                'name' => 'site',
+                'type' => 'text',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+                'maxlength' => '',
+            ),
+            array(
+                'key' => 'field_5e1c3f04aa479',
+                'label' => 'IN',
+                'name' => 'in',
+                'type' => 'text',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+                'maxlength' => '',
+            ),
+            array(
+                'key' => 'field_5e1c3f21aa47a',
+                'label' => 'Twitter',
+                'name' => 'twitter',
+                'type' => 'text',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+                'maxlength' => '',
+            ),
+            array(
+                'key' => 'field_5e1c3f2baa47b',
+                'label' => 'Block 1',
+                'name' => 'block_1',
+                'type' => 'group',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'layout' => 'block',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_5e1c3f45aa47c',
+                        'label' => 'Title',
+                        'name' => 'title',
+                        'type' => 'text',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'default_value' => '',
+                        'placeholder' => '',
+                        'prepend' => '',
+                        'append' => '',
+                        'maxlength' => '',
+                    ),
+                    array(
+                        'key' => 'field_5e1c3f55aa47d',
+                        'label' => 'List',
+                        'name' => 'list',
+                        'type' => 'repeater',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'collapsed' => '',
+                        'min' => 0,
+                        'max' => 0,
+                        'layout' => 'table',
+                        'button_label' => '',
+                        'sub_fields' => array(
+                            array(
+                                'key' => 'field_5e1c3f75aa47e',
+                                'label' => 'Item',
+                                'name' => 'item',
+                                'type' => 'textarea',
+                                'instructions' => '',
+                                'required' => 0,
+                                'conditional_logic' => 0,
+                                'wrapper' => array(
+                                    'width' => '',
+                                    'class' => '',
+                                    'id' => '',
+                                ),
+                                'default_value' => '',
+                                'placeholder' => '',
+                                'maxlength' => '',
+                                'rows' => '',
+                                'new_lines' => '',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+            array(
+                'key' => 'field_5e1c3fbbaa47f',
+                'label' => 'Block 2',
+                'name' => 'block_2',
+                'type' => 'group',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'layout' => 'block',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_5e1c3fcfaa480',
+                        'label' => 'Title',
+                        'name' => 'title',
+                        'type' => 'text',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'default_value' => '',
+                        'placeholder' => '',
+                        'prepend' => '',
+                        'append' => '',
+                        'maxlength' => '',
+                    ),
+                    array(
+                        'key' => 'field_5e1c3fdaaa481',
+                        'label' => 'Text',
+                        'name' => 'text',
+                        'type' => 'wysiwyg',
+                        'instructions' => '',
+                        'required' => 0,
+                        'conditional_logic' => 0,
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'default_value' => '',
+                        'tabs' => 'all',
+                        'toolbar' => 'basic',
+                        'media_upload' => 0,
+                        'delay' => 0,
+                    ),
+                ),
+            ),
+            array(
+                'key' => 'field_5e1c3ffcaa482',
+                'label' => 'Form code',
+                'name' => 'form_code',
+                'type' => 'text',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+                'maxlength' => '',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'page_landing_dc.php',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'normal',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'hide_on_screen' => '',
+        'active' => true,
+        'description' => '',
+    ));
+
+endif;
+
+// End **** For Landing DC ***
 
 /**********************************************************************************/
 /*
@@ -925,7 +1199,7 @@ endif;
 */
 
 /*************** Landing Page fields ******************/
-
+/*
 if( function_exists('acf_add_local_field_group') ):
 
     acf_add_local_field_group(array(
@@ -2017,3 +2291,4 @@ if( function_exists('acf_add_local_field_group') ):
     ));
 
 endif;
+*/

@@ -107,7 +107,8 @@
                         </div>
                         <p class="copy">
                             <?php
-                                echo $redux_demo ['copyright'];
+                            $copyright = str_replace('2019', date('Y', time()), $redux_demo['copyright']);
+                                echo $copyright;
                              ?>
                         </p>
                     </div>

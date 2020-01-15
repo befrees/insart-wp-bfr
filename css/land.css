@@ -4,7 +4,10 @@ body {
 	line-height: normal;
 	color: #414042;
 }
-
+img {
+	max-width: 100%;
+	height: auto;
+}
 h1,
 h2,
 h3,
@@ -457,6 +460,7 @@ h3,
 }
 .bbr-items .col-bbr .img-bbr {
 	margin-bottom: 20px;
+	width: 90px;
 }
 
 .bbr-items .col-bbr-2 {

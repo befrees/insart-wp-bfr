@@ -84,9 +84,60 @@ a.link_download {
     margin-left: 50px;
 }
 .section2 {
-    background: url(../img/bg-1-form-tpl-3.png) no-repeat 0 center, url(../img/bg-2-form-tpl-3.png) no-repeat right center;
     padding-top: 100px;
     padding-bottom: 100px;
+}
+/* .icon-left-bg path {
+    stroke: #FF5B2F;
+    fill: #FF5B2F;
+} */
+.bg-right-col {
+    display: flex;
+}
+.svg-left-bg {
+    width: 100%;
+    height: auto;
+}
+.svg-right-bg {
+    margin: auto;
+}
+.svg-left-bg path.stroke,
+.svg-right-bg path {
+    stroke: #FF5B2F;
+    stroke-width: 1px;
+}
+.svg-left-bg path.fill {
+    fill: #FF5B2F;
+}
+@media screen and (max-width: 991px){
+    .bg-left {
+        display: none;
+    }
+}
+@media screen and (max-width: 768px){
+    .bg-right-col,
+    .bg-left {
+        display: none;
+    }
+}
+@media screen and (min-width: 992px){
+    .row-with-form-tpl-3 {
+        display: flex;
+    }
+    .row-with-form-tpl-3 .bg-left {
+        /* width: calc(100% / 12 + 100px); */
+        /* background-image: url(../img/bg-1-form-tpl-3.png); */
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        background-size: contain;
+        width: 15%;
+    }
+}
+.section2 .bg-right {
+    display: flex;
+    /* background-image: url(../img/bg-2-form-tpl-3.png); */
+    background-position: right center;
+    background-repeat: no-repeat;
 }
 .form-block-text-left {
     width: 25%;
@@ -128,18 +179,25 @@ a.link_download {
 #form {
     width: 33%;
     margin-left: 8.3%;
+    width: auto;
+    max-width: 600px;
 }
 #form .wpcf7 {
     box-shadow: 16px 20px 40px rgba(0, 0, 0, 0.2);
-    padding: 30px 0px;
-    width: 420px;
+    padding: 30px 75px;
+    /*width: 420px;*/
     max-width: 100%;
     margin: 0 auto;
+}
+.wpcf7 .form-row {
+    margin-bottom: 23px;
 }
 .wpcf7 .form-row label {
     font-weight: normal;
     font-size: 12px;
     line-height: 120%;
+    font-family: 'Noticia Text', serif;
+    margin-bottom: 7px;
 }
 .wpcf7 .form-row [type=text],
 .wpcf7 .form-row [type=email] {
@@ -150,11 +208,161 @@ a.link_download {
     padding-left: 15px;
     padding-right: 15px;
     height: 56px;
+    width: 420px;
 
+}
+.form1 .wpcf7-submit {
+    min-width: 270px;
+    padding-left: 2.2em;
+    padding-right: 2.2em;
+    height: 64px;
+    background: #FF5B2F;
+    font-family: 'Noticia Text', serif;
+    color: #ffff;
+    border-radius: 5px;
+    font-size: 24px;
+    border: none;
+    outline: none;
 }
 /**
 FOOTER
  */
 footer {
     background: rgba(255,255,255,.05);
+    padding: 10px;
+}
+
+.popup-mail {
+    background: #244B82;
+    color: #fff;
+    min-height: 100%;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+.pm-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+.pm-soc {
+    margin-left: 45px;
+}
+.pm-soc a {
+    margin-right: 56px;
+    vertical-align: bottom;
+}
+.pm-email {
+    margin-right: 45px;
+    margin-left: auto;
+}
+@media (max-width: 1360px) {
+    .text1 {
+        font-size: 60px;
+    }
+    .form-block-text-left {
+        width: 50%;
+    }
+    #form {
+        width: 50%;
+        margin: 0;
+    }
+    #form .wpcf7 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .wpcf7 .form-row [type=text], .wpcf7 .form-row [type=email] {
+        max-width: 100%;
+    }
+}
+@media (max-width: 992px) {
+    .col-header-text {
+        width: 100%;
+        padding-bottom: 20px;
+    }
+    .col-header-img {
+         width: 50%;
+     }
+    .col-text-right {
+        width: 50%;
+    }
+}
+@media (max-width: 720px) {
+    .col-top-logo {
+        width: 50%;
+        margin-top: 18px;
+        float: left;
+    }
+    .logotip {
+        width: 124px;
+        height: auto;
+    }
+    .col-top-email {
+        /*display: none;*/
+        font-size: 16px;
+        margin-top: 14px;
+    }
+    .row-box-top {
+        width: auto;
+    }
+    .col-header-text {
+        padding-bottom: 0;
+    }
+    .text1 {
+        font-size: 40px;
+    }
+    .col-header-img {
+        width: 100%;
+        padding-bottom: 15px;
+    }
+    .col-text-right {
+        width: 100%;
+    }
+    .col-text-right .text {
+        display: none;
+    }
+    .box_social_row {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .row-with-form-tpl-3 {
+        display: block;
+    }
+    .form-block-text-left {
+        width: 100%;
+    }
+    #form {
+        width: 100%;
+    }
+    a.link_download {
+
+    }
+    .section2 {
+        padding-top: 15px;
+        background: transparent !important;
+    }
+    .row-with-form-tpl-3 {
+        background: transparent !important;
+    }
+    #form .wpcf7 {
+        box-shadow: none;
+        padding: 5px 0;
+    }
+    .wpcf7-form-control-wrap {
+        display: block;
+    }
+    .wpcf7 .form-row [type=text], .wpcf7 .form-row [type=email] {
+
+    }
+}
+@media (max-width: 480px) {
+
+    .wpcf7 .form-row [type=text], .wpcf7 .form-row [type=email] {
+        width: 100%;
+    }
 }

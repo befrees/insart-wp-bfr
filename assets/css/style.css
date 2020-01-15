@@ -1465,7 +1465,9 @@ footer {
 .row_clients {
     margin-top: 100px;
 }
-
+.row_clients img {
+    height: auto;
+}
 .name_clients {
     font-family: Montserrat;
     font-style: normal;

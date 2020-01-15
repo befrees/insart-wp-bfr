@@ -225,7 +225,12 @@ a.link_download:hover {
 .form1 .wpcf7-submit:hover, .form1 .wpcf7-submit:active, .form1 .wpcf7-submit:focus {
     background: transparent!important;
 }
-
+.form1 input[type=checkbox] {
+    border-color: #30498C;
+}
+.form1 input[type="checkbox"]:checked:before {
+    border-color: #30498C;
+}
 footer {
     background: rgba(255,255,255,.05);
     font-size: 16px;
@@ -241,4 +246,507 @@ footer {
 
 .disp_b_768 {
     display: none;
+}
+@media only screen and (max-width: 1710px) {
+    .container {
+        /* padding: 0 95px; */
+    }
+    .text1 {
+        font-size: 90px;
+        /* line-height: 81px; */
+    }
+
+    .section1 {
+        /* height: 980px; */
+        padding-top: 40px;
+        background-size: cover;
+    }
+}
+
+@media only screen and (max-width: 1550px) {
+    .section1 {
+        height: 870px;
+    }
+
+    .text1 {
+        font-size: 80px;
+        /* line-height: 71px; */
+        /* margin-top: 230px; */
+    }
+
+    .container-fluid {
+        /* padding: 0 87px 0 40px; */
+    }
+
+    .box_bord {
+        /* width: 574px; */
+        /* height: 409px; */
+        /* margin-top: 138px; */
+        background-size: cover;
+        padding: 0 15px;
+        /* margin-left: 83px; */
+    }
+
+    a.link_download {
+        font-size: 30px;
+        line-height: 36px;
+    }
+
+    .arrow {
+        margin-left: 25px;
+        max-width: 40px;
+    }
+
+    .text2_s2 {
+        font-size: 60px;
+        line-height: 70px;
+    }
+
+    .title_list {
+        font-size: 30px;
+        line-height: 38px;
+        width: 100%;
+    }
+
+    .list1 {
+        padding-left: 42px;
+        margin-top: 40px;
+    }
+
+    .title1_list {
+        margin-top: 104px;
+    }
+
+    .title2_list {
+        margin-top: 62px;
+    }
+
+    .list1 li {
+        font-size: 20px;
+        line-height: 28px;
+    }
+
+    .section2 {
+        height: auto;
+        padding: 90px 0;
+        background-size: cover;
+    }
+
+    .form1 input {
+        font-size: 20px;
+        line-height: 28px;
+        margin-bottom: 30px;
+    }
+    .form1 label {
+        font-size: 20px;
+        line-height: 28px;
+    }
+
+    .form1 .wpcf7-submit {
+        height: 80px;
+        font-size: 26px;
+        line-height: 33px;
+        margin-top: 70px;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .box_social a {
+        margin-left: 30px;
+    }
+
+    .logotip {
+        max-width: 150px;
+    }
+
+    .section1 {
+        /* height: 768px; */
+        padding: 20px 0 40px;
+    }
+
+    .text1 {
+        font-size: 64px;
+        /* line-height: 51px; */
+        /* margin-top: 210px; */
+    }
+
+    .box_bord {
+        /* width: 504px; */
+        /* height: 357px; */
+        /* margin-top: 132px; */
+        background-size: cover;
+        /* padding: 0 35px; */
+        /* margin-left: 59px; */
+    }
+
+    a.link_download {
+        font-size: 25px;
+        line-height: 26px;
+    }
+
+    .arrow {
+        margin-left: 20px;
+        max-width: 28px;
+    }
+
+    .section2 {
+        height: auto;
+        padding: 50px 0;
+        background-size: cover;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .container-fluid {
+        padding: 0 15px;
+    }
+
+    .text1_s2 {
+        font-size: 20px;
+        line-height: 28px;
+    }
+
+    .text2_s2 {
+        font-size: 50px;
+        line-height: 56px;
+    }
+
+    .title_list {
+        font-size: 26px;
+        line-height: 28px;
+        width: 100%;
+    }
+
+    .list1 li {
+        font-size: 18px;
+        line-height: 27px;
+    }
+
+    .list1 li::before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: -27px;
+        top: 7px;
+        border-radius: 50px;
+        width: 12px;
+        height: 12px;
+    }
+
+    .title2_list {
+        margin-top: 42px;
+    }
+
+    .title1_list {
+        margin-top: 84px;
+    }
+
+    .list1 {
+        padding-left: 42px;
+        margin-top: 30px;
+    }
+
+    .form1 label {
+        font-size: 18px;
+        line-height: 20px;
+    }
+
+    .figure {
+        margin-top: -3px;
+    }
+
+    .form1 input {
+        font-size: 18px;
+        line-height: 18px;
+        margin-bottom: 20px;
+        padding-bottom: 5px;
+    }
+
+    .form1 {
+        max-width: 610px;
+        width: 100%;
+        margin-top: 60px;
+    }
+
+    .form1 .wpcf7-submit {
+        height: 70px;
+        font-size: 24px;
+        line-height: 26px;
+        margin-top: 50px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .box_bord {
+        margin-left: 0;
+        /* width: 454px; */
+        /* height: 322px; */
+        /* margin-top: 132px; */
+        background-size: cover;
+        /* padding: 0 35px; */
+    }
+
+    .text1 {
+        font-size: 56px;
+        /* line-height: 51px; */
+        /* margin-top: 150px; */
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .box_bord {
+        /* width: 344px; */
+        /* height: 245px; */
+        /* margin-top: 132px; */
+        background-size: cover;
+        /* padding: 0 25px; */
+        margin: 0 auto;
+        /* margin-top: 135px; */
+    }
+
+    .text1 {
+        font-size: 54px;
+        /* line-height: 41px; */
+        /* margin-top: 130px; */
+    }
+
+    .text2 {
+        font-style: normal;
+        font-size: 16px;
+        line-height: 24px;
+        max-width: 450px;
+        margin-bottom: 70px;
+    }
+
+    a.link_download {
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    .arrow {
+        margin-left: 13px;
+        max-width: 32px;
+    }
+
+    .box_social img {
+        max-width: 25px;
+    }
+
+    .box_social a {
+        margin-left: 20px;
+    }
+
+    .text1_s2 {
+        font-size: 18px;
+        line-height: 23px;
+    }
+
+    .text2_s2 {
+        font-size: 40px;
+        line-height: 46px;
+    }
+
+    .title1_list {
+        margin-top: 54px;
+    }
+
+    .title_list {
+        font-size: 22px;
+        line-height: 26px;
+        width: 100%;
+    }
+
+    .list1 {
+        padding-left: 30px;
+        margin-top: 16px;
+    }
+
+    .list1 li {
+        font-size: 16px;
+        line-height: 21px;
+        margin-bottom: 10px;
+    }
+
+    .form1 label {
+        font-size: 16px;
+        line-height: 16px;
+    }
+
+    .form1 input {
+        font-size: 16px;
+        line-height: 16px;
+        margin-bottom: 15px;
+        padding-bottom: 0px;
+    }
+
+    .form1 .wpcf7-submit {
+        height: 80px;
+        font-size: 18px;
+        line-height: 22px;
+        margin-top: 30px;
+    }
+
+    footer {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .disp_n_768 {
+        display: none;
+    }
+
+    .disp_b_768 {
+        display: block;
+    }
+
+    .section1 {
+        padding-bottom: 0;
+        height: auto;
+    }
+    .section2 {
+        padding-top: 0;
+        margin-bottom: 60px;
+    }
+    .text2_s2 {
+        font-size: 32px;
+        margin-top: 40px;
+    }
+    .box_bord {
+        /* margin-top: 25px; */
+        margin-top: 0;
+        padding: 0;
+        width: auto;
+    }
+    .header-img-box {
+        padding-top: 0;
+        margiN: 0;
+    }
+    .header-link-box {
+        text-align: right;
+    }
+    .title_list {
+        font-size: 20px;
+        width: 100%;
+    }
+    .form1 {
+        margin-left: -15px;
+        margin-right: -15px;
+        width: auto;
+        padding: 30px 0 20px;
+    }
+    .form1 .form-inner {
+        padding: 0 15px;
+    }
+    .form1 .wpcf7-submit {
+        margin-bottom: 0;
+    }
+    .form1 label {
+        font-size: 14px;
+    }
+
+    .form1 input {
+        font-size: 14px;
+        line-height: 16px;
+        margin-bottom: 30px;
+        padding-bottom: 0px;
+    }
+
+    .figure {
+        margin-top: -3px;
+        max-width: 10px;
+        margin-right: 10px;
+    }
+
+    .text1 {
+        font-size: 32px;
+        line-height: 40px;
+        margin-top: 130px;
+    }
+    .pm-center .h2 {
+        font-size: 42px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .section1 {
+        position: relative;
+    }
+
+    .text2 {
+        display: none;
+    }
+    .text1 {
+        font-size: 32px;
+        line-height: 40px;
+        margin-top: 28px;
+        max-width: 250px;
+    }
+
+    .logotip {
+        max-width: 126px;
+    }
+
+    .box_social {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        padding: 0;
+    }
+
+    .text1_s2 {
+        font-size: 16px;
+        line-height: 28px;
+    }
+
+    .section2 {
+        height: auto;
+        padding: 10px 0;
+    }
+    .text1_1 {
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+    .text1_1 > p {
+        display: none;
+    }
+    .text1_1 > div p {
+        margin-bottom: 2em;
+    }
+    .title_list {
+        font-size: 20px;
+        line-height: 32px;
+        margin-top: 0;
+    }
+    .title1_list {
+        margin-top: 39px;
+    }
+    .text2_2 {
+        font-size: 14px;
+    }
+    .list1 li {
+        font-size: 14px;
+        line-height: 28px;
+        margin-bottom: 12px;
+    }
+
+    .list1 li::before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: -27px;
+        top: 11px;
+        border-radius: 50px;
+        width: 8px;
+        height: 8px;
+    }
+
+    .form1 {
+        margin-top: 30px;
+    }
+
+    footer {
+        font-size: 12px;
+    }
 }

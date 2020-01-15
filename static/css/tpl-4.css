@@ -148,6 +148,7 @@ div.wpcf7 form {
     border-bottom: 1px solid #C4C4C4;
     background: transparent;
     padding: 5px 0;
+    max-width: 100%;
 }
 .wpcf7 .form-row label {
     color: #1E195C;
@@ -247,4 +248,101 @@ footer {
     background: rgba(59, 54, 111, 0.06);
     color: #3B366F;
     padding: 10px 0 8px;
+}
+@media (max-width: 1360px) {
+    .col-top-logo {
+        margin-left: 20px;
+    }
+    .container-top {
+        padding-top: 30px;
+    }
+    .col-header-text {
+        margin-left: 0;
+        width: 50%;
+    }
+    .text1 {
+        font-size: 50px;
+    }
+    .col-header-img {
+        width: 50%;
+    }
+    .form-block-text-left {
+        margin-left: 0;
+        width: 33.3%;
+    }
+    .cfc-contact h2, .cfc-contact h3 {
+        font-size: 48px;
+    }
+}
+@media (max-width: 768px) {
+    .col-top-logo {
+        margin-left: 0;
+        margin-top: 15px;
+        float: left;
+    }
+    .logotip {
+        width: 124px;
+    }
+    .col-top-email {
+        font-size: 16px;
+        margin: 17px 15px 0 0;
+    }
+    .section1 {
+        min-height: 560px;
+    }
+    .container-top {
+        padding: 0;
+    }
+    .row-box-top {
+        display: block;
+    }
+    .col-header-text {
+        width: auto;
+    }
+    .text1 {
+        font-size: 32px;
+    }
+    .text2 {
+        display: none;
+    }
+    .col-header-img {
+        width: 100%;
+        margin-top: 55px;
+    }
+    .header-img-lbl {
+        font-size: 14px;
+    }
+    .box_social_row {
+        padding-top: 0;
+        padding-bottom: 10px;
+    }
+    .box_social_row .box_social {
+        margin-left: 0;
+    }
+    .row-with-form-tpl-4 {
+        display: block;
+    }
+    .form-block-text-left {
+        width: 100%;
+        padding: 15px 30px;
+        font-size: 14px;
+    }
+    #form {
+        width: 100%;
+        border: none;
+    }
+    #form:before, #form:after {
+        display: none;
+    }
+    .text2_s2 {
+        padding: 24px 15px 24px;
+        font-size: 24px;
+        border-top:1px solid #3B366F;
+    }
+    .col-form-contancts {
+        width: 100%;
+    }
+    .cfc-contact h2, .cfc-contact h3 {
+        font-size: 32px;
+    }
 }

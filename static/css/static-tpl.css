@@ -129,3 +129,55 @@ body {
 #form .wpcf7-mail-sent-ok {
     display: none !important;
 }
+.form1 .form-acceptance {
+    padding-top: 15px;
+}
+.form1 input[type=checkbox] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: inline-block;
+    border: 2px solid #000;
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: -24px;
+    margin-right: 0px;
+    outline: none !important;
+    margin-top: 3px;
+    border-radius: 3px;
+    float: left;
+}
+.form1 input[type="checkbox"]:checked:before {
+    content: '';
+    margin: 3px 0 0 3px;
+    border-bottom: 2px solid #000;
+    border-left: 2px solid #000;
+    display: block;
+    margin-top: 0px;
+    height: 7px;
+    width: 13px;
+    margin-left: 2px;
+    -webkit-transform: rotate(-50deg);
+    transform: rotate(-50deg);
+}
+
+.pm-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 0;
+}
+.pm-soc {
+    margin-left: 45px;
+}
+.pm-soc a {
+    margin-right: 56px;
+    vertical-align: bottom;
+}
+.pm-email {
+    margin-right: 45px;
+    margin-left: auto;
+}

@@ -74,7 +74,7 @@ $soc = get_field('social_links');
                         </div>
 
                     </div>
-                    <div class="col-img-right"><img src="<?= $block_2['image_1']['url'] ?>" alt="<?= $block_2['image_1']['alt'] ?>"></div>
+                    <div class="col-img-right col-md-6"><img src="<?= $block_2['image_1']['url'] ?>" alt="<?= $block_2['image_1']['alt'] ?>"></div>
                 </div>
             </div>
             <div class="container">
