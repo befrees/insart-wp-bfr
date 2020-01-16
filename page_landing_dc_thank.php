@@ -63,6 +63,9 @@ $fs = get_fields($post);
             </div>
             <div class="by-insart order-3"><span>by INSART</span></div>
         </div>
+        <div class="footer_copyright text-center">
+            © 2015-<?= date('Y', time()) ?> INSART SOFTWARE LLC
+        </div>
     </footer>
 
 

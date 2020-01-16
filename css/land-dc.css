@@ -107,6 +107,9 @@ a.button {
 .cover-block .soc-links a {
     margin: 0 25px;
 }
+.cover-block .soc-links a:hover {
+    text-decoration: none;
+}
 .cover-block .by-insart {
     padding: 15px;
     flex: 2;
@@ -348,7 +351,7 @@ span.wpcf7-not-valid-tip {
 }
 .footer-thank .footer-inner {
     height: auto;
-    padding: 45px 15px;
+    padding: 45px 15px 5px;
     width: 1700px;
     margin: 0 auto;
     max-width: 100%;
@@ -510,6 +513,7 @@ span.wpcf7-not-valid-tip {
     }
     .top-block__thank {
         margin-bottom: 15px;
+        text-align: center;
     }
     .title-land__thank {
         text-align: center;
@@ -518,12 +522,22 @@ span.wpcf7-not-valid-tip {
         margin-top: 15px;
         margin-bottom: 15px;
         font-size: 12px;
+        text-align: center;
     }
     .other__items {
         display: block;
     }
     .other__item {
         margin-bottom: 10px;
+        width: 250px;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .other__item img {
+        width: 100%;
+        height: auto;
     }
 }
 @media (max-width: 500px){}
