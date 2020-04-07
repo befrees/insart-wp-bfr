@@ -1,4 +1,7 @@
 jQuery(function($){
+
+$('#cookie-notice').attr('style', '');
+
     $('.link-to-top').click(function(e){
         e.preventDefault();
         $('html, body').animate({scrollTop: 0}, 300);
@@ -26,5 +29,15 @@ jQuery(function($){
     $('.input-row input').blur(function(e){
         e.preventDefault();
         activeInput($(this).closest('.input-row'));
+    });
+
+    $('.form-box-anime .form-row input').focus(function(e){
+        e.preventDefault();
+        activeInput($(this).closest('.form-row'));
+    });
+
+    $('.form-box-anime .form-row input').blur(function(e){
+        e.preventDefault();
+        activeInput($(this).closest('.form-row'));
     });
 })

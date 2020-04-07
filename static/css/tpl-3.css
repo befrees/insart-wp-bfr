@@ -366,3 +366,18 @@ footer {
         width: 100%;
     }
 }
+
+#cookie-notice  {
+    background: #2f5488;
+}
+#cookie-notice #cn-notice-text {
+    font-family: inherit;
+    color: #fff;
+}
+.btn_cookies,
+.btn_cookies:hover {
+    color: #fff;
+}
+.btn_cookies .after svg {
+    fill: #fff;
+}

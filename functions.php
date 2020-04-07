@@ -8,6 +8,8 @@
  */
 // Отключаем админ панель для всех пользователей
 show_admin_bar(false);
+
+add_filter( 'big_image_size_threshold', '__return_false' );
 // Begin custom post
 
 //include 'inc/custom_fields.php';
@@ -19,8 +21,51 @@ function dd($array, $die = false)
         die();
 }
 
+
+function bfr_reset_svg($svg)
+{
+
+    $pattern = ['/<\?xml.+\?>/', '/\s(?:fill|title|style|viewBox)=\".+?\"/is', '/<svg/'];
+    $width = preg_match("/width=\"(.+?)\"/",$svg,$regs_w);
+    $height = preg_match("/height=\"(.+?)\"/",$svg,$regs_h);
+
+    $viewbox = ' viewBox="0 0 ' . $regs_w[1] . ' ' . $regs_h[1] . '" ';
+    $replacement = ['', '', '<svg ' . $viewbox];
+    $out = preg_replace($pattern, $replacement, $svg);
+    return $out;
+}
+
+function bfr_get_svg($path)
+{
+    $svg = file_get_contents($path);
+    return bfr_reset_svg($svg);
+}
+
+//add_action('wp', 'bfr_check_dc_cookie');
+
+add_filter( 'template_include', 'bfr_check_dc_cookie' );
+
+function bfr_check_dc_cookie($original_template)
+{
+    global $post;
+    if(is_page_template('page_landing_dc_thank.php') || is_page_template('page_landing_custom_thank.php')){
+        if(!isset($_COOKIE['dc']) || empty($_COOKIE['dc'])){
+            if($post->post_parent){
+                $link = get_permalink($post->post_parent);
+                wp_redirect($link);
+                die();
+            }
+            
+            return get_query_template( '404' );
+        }
+    }
+    return $original_template;
+
+}
+
 if (function_exists('add_image_size')) {
     add_image_size('img_300_85', 300, 85, false);
+    add_image_size('img_395_240', 395, 240, true);
 }
 
 function cc_mime_types($mimes) {
@@ -110,8 +155,124 @@ function custom_post_type()
         //'show_in_rest' => true, // Important !
     );
     register_post_type('client', $args);
+
+    
+	$labels = array(
+		'name' => 'Company',
+		'singular_name' => 'Company',
+		'menu_name' => 'Company',
+		'parent_item_colon' => 'Company',
+		'all_items' => 'All Companies',
+		'view_item' => 'Company',
+		'add_new_item' => 'Add new Company',
+		'add_new' => 'Add new',
+		'edit_item' => 'Edit Company',
+		'update_item' => 'Update Company',
+		'search_items' => 'Find by Company',
+		'not_found' => 'Не найдено',
+		'not_found_in_trash' => 'Не найдено в мусоре',
+	);
+	$args = array(
+		'label' => 'Companies',
+		'description' => 'Companies',
+		'labels' => $labels,
+		'supports' => array('title', 'editor', 'thumbnail', 'excerpt',  'custom-fields', 'page-attributes'),
+		'taxonomies' => array('type','api-tags'),
+		'hierarchical' => false,
+		'public' => true,
+		'show_ui' => true,
+		'show_in_menu' => true,
+		'show_in_nav_menus' => false,
+		'show_in_admin_bar' => true,
+		'menu_position' => 5,
+		// 'menu_icon' => get_bloginfo('template_url') . '/img/customer_review.png',
+        'menu_icon' => 'dashicons-admin-multisite',
+		'can_export' => true,
+		'has_archive' => false,
+		'exclude_from_search' => false,
+		'publicly_queryable' => true,
+		'capability_type' => 'post',
+	);
+    register_post_type('company', $args);
+    
 }
 add_action('init', 'custom_post_type', 0);
+
+
+add_action('init', 'create_type');
+
+function create_type() {
+    // заголовки
+    $labels3 = array(
+        'name' => __('Type'),
+        'singular_name' => __('Type'),
+        'all_items' => __('All types'),
+        'parent_item' => __('Parent Type'),
+        'parent_item_colon' => __('Parent Type:'),
+        'edit_item' => 'Edit Type',
+        'update_item' => 'Update Type',
+        'add_new_item' => __('Add New Type'),
+        'new_item_name' => __('New Type Name'),
+        'menu_name' => __('Type'),
+    );
+    // параметры
+    $args3 = array(
+        'label' => __('Type'), // определяется параметром $labels->name
+        'labels' => $labels3,
+        'public' => true,
+        'show_in_nav_menus' => true, // равен аргументу public
+        'show_ui' => true, // равен аргументу public
+//        'show_tagcloud' => true, // равен аргументу show_ui
+        'hierarchical' => true,
+        'tax_position' => true,
+//    'update_count_callback' => '',
+        'rewrite' => array('slug' => 'api'),
+//    'query_var'             => '',
+//        'capabilities' => array(),
+//        'meta_box_cb' => 'post_categories_meta_box', // callback функция. Отвечает за html код метабокса (с версии 3.8): post_categories_meta_box или post_tags_meta_box. Если указать false, то метабокс будет отключен вообще
+       'show_admin_column' => true, // Позволить или нет авто-создание колонки таксономии в таблице ассоциированного типа записи. (с версии 3.5)
+//        '_builtin' => true,
+//        'show_in_quick_edit' => true, // по умолчанию значение show_ui
+    );
+    register_taxonomy('type', array( 'company'), $args3);
+}
+
+add_action('init', 'create_tags_api');
+
+function create_tags_api() {
+    // заголовки
+    $labels3 = array(
+        'name' => __('Tags'),
+        'singular_name' => __('Tags'),
+        'all_items' => __('All tags'),
+        'parent_item' => __('Parent tags'),
+        'parent_item_colon' => __('Parent tags:'),
+        'edit_item' => 'Edit tags',
+        'update_item' => 'Update tags',
+        'add_new_item' => __('Add New tags'),
+        'new_item_name' => __('New tags Name'),
+        'menu_name' => __('Tags'),
+    );
+    // параметры
+    $args3 = array(
+        'label' => __('Tags'), // определяется параметром $labels->name
+        'labels' => $labels3,
+        'public' => true,
+        'show_in_nav_menus' => true, // равен аргументу public
+        'show_ui' => true, // равен аргументу public
+       'show_tagcloud' => true, // равен аргументу show_ui
+        'hierarchical' => false,
+//    'update_count_callback' => '',
+        'rewrite' => array('slug' => 'api-tags'),
+//    'query_var'             => '',
+//        'capabilities' => array(),
+//        'meta_box_cb' => 'post_categories_meta_box', // callback функция. Отвечает за html код метабокса (с версии 3.8): post_categories_meta_box или post_tags_meta_box. Если указать false, то метабокс будет отключен вообще
+       'show_admin_column' => true, // Позволить или нет авто-создание колонки таксономии в таблице ассоциированного типа записи. (с версии 3.5)
+//        '_builtin' => true,
+//        'show_in_quick_edit' => true, // по умолчанию значение show_ui
+    );
+    register_taxonomy('api-tags', array( 'company'), $args3);
+}
 
 // End custom post
 
@@ -235,7 +396,9 @@ function insart_wp_scripts() {
     wp_enqueue_style( 'insart-wp-bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.css' );
     wp_enqueue_style( 'insart-wp-slick-theme', get_template_directory_uri() . '/assets/css/slick-theme.css' );
 	wp_enqueue_style( 'insart-wp-slick', get_template_directory_uri() . '/assets/css/slick.css' );
-	if(!is_page_template('template-static-custom.php') && !is_page_template('page_landing.php')){
+	if( !is_page_template('template-static-custom.php')
+        && !is_page_template('page_landing.php')
+            && !is_page_template('page_landing_custom_thank.php' )){
 		wp_enqueue_style( 'insart-wp-style2', get_template_directory_uri() . '/assets/css/style.css' );
     	wp_enqueue_style( 'insart-wp-media', get_template_directory_uri() . '/assets/css/media.css' );
 	}
@@ -471,3 +634,229 @@ function bfr_clear_br($text){
 	return str_replace('</div><br>', '</div>', $text);
 }
 
+// filter emails
+
+add_filter( 'wpcf7_validate_email', 'bfr_custom_form_validation', 10, 2 );
+add_filter( 'wpcf7_validate_email*', 'bfr_custom_form_validation', 10, 2 );
+
+function bfr_custom_form_validation ($result, $tag){
+
+    $tag_name = $tag->name;
+    $name =  $tag_name;
+
+    if( empty( $name ) ) {
+        $name = "invalid_required";
+    }
+    if ( 'email' == $tag->basetype ) {
+
+        $value = isset( $_POST[$tag_name] )
+            ? trim( wp_unslash( strtr( (string) $_POST[$tag_name], "\n", " " ) ) )
+            : '';
+        $s = preg_match('/(\S+)@(gmail.com|yahoo.com|outlook.com|aol.com|icloud.com|msn.com|hotmail.com)/is', $value, $m);
+
+        if($s){
+            $result->invalidate( $tag, 'Please, enter your Business Email' );
+        }
+        if ( $tag->is_required() && '' == $value ) {
+            $result->invalidate( $tag, wpcf7_get_message( $name ) );
+        } elseif ( '' != $value && ! wpcf7_is_email( $value ) ) {
+            $result->invalidate( $tag, wpcf7_get_message( $name ) );
+        }
+    }
+    return $result;
+}
+
+///  Admin columns
+function bfr_AddPostsColumn($cols, $post_type){
+    
+    if($post_type == 'page'){
+                $cols['template_type'] = 'Template';
+            }
+            return $cols;
+}
+function bfr_AddPagesColumn($cols){
+    
+    $cols['template_type'] = 'Template';            
+    return $cols;
+}
+function bfr_AddTplValue($column_name, $post_id) {
+        
+    if ( 'template_type' == $column_name ) {
+        // thumbnail of Wtemplate_type 2.9
+    $template_type = get_field('template_type', $post_id);
+    //    dd($comp);
+        if ( isset($template_type) && $template_type) { 
+            echo $template_type;
+        }
+         else {
+             echo __('-- None --'); 
+        }
+    }
+}
+add_filter( 'manage_posts_columns', 'bfr_AddPostsColumn', 10, 2);
+add_filter( 'manage_pages_columns', 'bfr_AddPagesColumn', 10);
+add_action( 'manage_pages_custom_column', 'bfr_AddTplValue', 10, 2 );
+
+/////////////////////////////////////////////////////////////////
+
+
+function hex2rgb($hex){
+    return list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
+}
+
+function hex2rgba($hex, $a='1'){
+    $out_arr = list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
+    return 'rgba('. implode(',', $out_arr) .', '. $a .')';
+}
+
+function get_esc_var($var=array()){
+    if(!$var) return $var;
+    $out = array();
+    foreach($var as $k=>$v){
+        if((int)$v)
+            $out[$k] = (int) $v;
+    }
+    return $out;
+}
+
+
+/////////////////////////// Картинки в категориях //////////////////////////////////////////
+
+
+add_action( 'type_edit_form_fields', 'mayak_update_category_image' , 10, 2 ); 
+add_action( 'category_edit_form_fields', 'mayak_update_category_image' , 10, 2 ); 
+function mayak_update_category_image ( $term, $taxonomy ) { 
+
+  // wp_enqueue_editor();
+  wp_enqueue_media();
+
+?>
+ <style>
+ img{border:3px solid #ccc;}
+ .term-group-wrap p{float:left;}
+ .term-group-wrap input{font-size:18px;font-weight:bold;width:40px;}
+ #bitton_images{font-size:18px;}
+ #bitton_images_remove{font-size:18px;margin:5px 5px 0 0;}
+ </style>
+ <tr class="form-field term-group-wrap">
+   <th scope="row">
+     <label for="id-cat-images">Изображение</label>
+   </th>
+   <td>
+     <p><input type="button" class="button bitton_images" id="bitton_images" name="bitton_images" value="+" /></br>
+     <input type="button" class="button bitton_images_remove" id="bitton_images_remove" name="bitton_images_remove" value="&ndash;" /></p>
+     <?php $id_images = get_term_meta ( $term -> term_id, 'id-cat-images', true ); ?>
+     <input type="hidden" id="id-cat-images" name="id-cat-images" value="<?php echo $id_images; ?>">
+     <div id="cat-image-miniature">
+       <?php if (empty($id_images )) { ?>
+       <img src="/wp-includes/images/crystal/default.png" alt="Zaglushka" width="84" height="89"/>
+       <?php } else {?>
+         <?php echo wp_get_attachment_image ( $id_images, 'thumbnail' ); ?>
+       <?php } ?>
+     </div>
+   </td>
+ </tr>
+<?php
+}
+
+
+if(preg_match("#tag_ID=([0-9.]+)#", $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']))
+add_action( 'admin_footer', 'mayak_loader'  );
+function mayak_loader() {
+
+?>
+ <script>
+   jQuery(window).load( function($) {
+     function mayak_image_upload(button_class) {
+      console.log(wp);
+       var mm = true,
+       _orig_send_attachment = wp.media.editor.send.attachment;
+       jQuery('body').on('click', button_class, function(e) {
+         var mb = '#'+jQuery(this).attr('id');
+         var mt = jQuery(mb);
+         mm = true;
+         wp.media.editor.send.attachment = function(props, attachment){
+           if (mm) {
+             jQuery('#id-cat-images').val(attachment.id);
+             jQuery('#cat-image-miniature').html('<img class="custom_media_image" src="" style="margin:0;padding:0;max-height:100px;float:none;" />');
+             jQuery('#cat-image-miniature .custom_media_image').attr('src',attachment.sizes.thumbnail.url).css('display','block');
+           } else {
+             return _orig_send_attachment.apply( mb, [props, attachment] );
+           }
+          }
+       wp.media.editor.open(mt);
+       return false;
+     });
+   }
+   mayak_image_upload('.bitton_images.button'); 
+   jQuery('body').on('click','.bitton_images_remove',function(){
+     jQuery('#id-cat-images').val('');
+     jQuery('#cat-image-miniature').html('<img class="custom_media_image" src="" style="margin:0;padding:0;max-height:100px;float:none;" />');
+   });
+   jQuery(document).ajaxComplete(function(event, xhr, settings) {
+     var mk = settings.data.split('&');
+     if( jQuery.inArray('action=add-tag', mk) !== -1 ){
+       var mh = xhr.responseXML;
+       $mr = jQuery(mh).find('term_id').text();
+       if($mr!=""){
+         jQuery('#cat-image-miniature').html('');
+       }
+     }
+   });
+ });
+</script>
+<?php } 
+
+
+add_action( 'edited_type','mayak_updated_category_image' , 10, 2 );
+add_action( 'edited_category','mayak_updated_category_image' , 10, 2 );
+
+function mayak_updated_category_image ( $term_id, $tt_id ) {
+ if( isset( $_POST['id-cat-images'] ) && '' !== $_POST['id-cat-images'] ){
+   $image = $_POST['id-cat-images'];
+   update_term_meta ( $term_id, 'id-cat-images', $image );
+ } else {
+   update_term_meta ( $term_id, 'id-cat-images', '' );
+ }
+}
+
+// color
+
+
+add_action( 'type_edit_form_fields', 'mayak_update_category_color' , 10, 2 ); 
+add_action( 'edited_type','mayak_updated_category_color' , 10, 2 );
+
+function mayak_update_category_color($term, $taxonomy ){
+
+  wp_enqueue_script( 'wp-color-picker' );
+wp_enqueue_style( 'wp-color-picker' );
+
+?>
+ <script>
+   jQuery(document).ready(function($){
+$('input[name*="color"]').wpColorPicker();
+});
+ </script>
+ <tr class="form-field term-group-wrap">
+   <th scope="row">
+     <label for="color">Color</label>
+   </th>
+   <td>
+     
+     <?php $id_color = get_term_meta ( $term -> term_id, 'color', true ); ?>
+     <input type="text" id="color" name="color" value="<?php echo $id_color; ?>">
+     
+   </td>
+ </tr>
+<?php
+}
+
+
+function mayak_updated_category_color ( $term_id, $tt_id ) {
+ if( isset( $_POST['color'] ) && '' !== $_POST['color'] ){
+   $image = $_POST['color'];
+   update_term_meta ( $term_id, 'color', $image );
+ } else {
+   update_term_meta ( $term_id, 'color', '' );
+ }
+}

@@ -25,7 +25,8 @@
                     <div class="footer_menu">
                         <?php
                             wp_nav_menu( array(
-                                'theme_location' => 'menufoot-1',
+                                // 'theme_location' => 'menufoot-1',
+                                'menu' => 'menufoot-1',
                                 'menu_id'        => 'foot1-menu',
                                 'container' => 'ul',
                                 'container_class' => 'menu_foot',
@@ -43,7 +44,8 @@
                         <p class="menu_foot2_title">Industries</p>
                         <?php
                             wp_nav_menu( array(
-                                'theme_location' => 'menufoot-2',
+                                // 'theme_location' => 'menufoot-2',
+                                'menu' => 'menufoot-2',
                                 'menu_id'        => 'foot2-menu',
                                 'container' => 'ul',
                                 'container_class' => 'menu_foot menu_foot2',
@@ -57,7 +59,8 @@
                         
                         <?php
                             wp_nav_menu( array(
-                                'theme_location' => 'menufoot-3',
+                                // 'theme_location' => 'menufoot-3',
+                                'menu' => 'menufoot-3',
                                 'menu_id'        => 'foot3-menu',
                                 'container' => 'ul',
                                 'container_class' => 'menu_foot menu_foot2 menu_foot2_li',

@@ -1,28 +1,26 @@
-/*!
-Theme Name: insart-wp-bfr
-Theme URI: http://underscores.me/
-Author: Babych Sasha
-Author URI: http://underscores.me/
-Description: Description
-Version: 1.0.0
-License: GNU General Public License v2 or later
-License URI: LICENSE
-Text Domain: insart-wp
-Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
-
-GitHub Theme URI: befrees/insart-wp-bfr
-GitHub Theme URI: https://github.com/befrees/insart-wp-bfr
-
-*/
-
-.cookie-notice-container {
-	text-align:left;
-	display: flex;
-	padding: 0;
-	max-width: 1920px;
-	margin: 0 auto;
-}
-
-#cookie-notice .cn-button {
-	margin-left: auto;
-}
+/*!
+Theme Name: insart-wp-bfr
+Author: Babych Sasha
+Author URI: http://underscores.me/
+Description: Description
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: insart-wp
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+Template Version: 1.0.0
+GitHub Theme URI: befrees/insart-wp-bfr
+GitHub Theme URI: https://github.com/befrees/insart-wp-bfr
+
+*/
+.cookie-notice-container {
+	text-align:left;
+	display: flex;
+	padding: 0;
+	max-width: 1920px;
+	margin: 0 auto;
+}
+
+#cookie-notice .cn-button {
+	margin-left: auto;
+}

@@ -346,3 +346,19 @@ footer {
         font-size: 32px;
     }
 }
+
+#cookie-notice  {
+    background: rgba(59, 54, 111, 0.06);
+    color: #3B366F;
+}
+#cookie-notice #cn-notice-text {
+    font-family: inherit;
+    color: rgba(0,0,0,.8);
+}
+.btn_cookies,
+.btn_cookies:hover {
+    color: #3B366F;
+}
+.btn_cookies .after svg {
+    fill: #3B366F;
+}

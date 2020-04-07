@@ -181,3 +181,117 @@ body {
     margin-right: 45px;
     margin-left: auto;
 }
+
+.col-top-email a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+#cookie-notice  {
+    height: 120px;
+    background: linear-gradient(11.85deg, #160A8B -10.92%, #3A2CA8 75.02%, #5142BA 105.63%);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 100px;
+    padding-right: 190px;
+    z-index: 10000;
+}
+#cookie-notice .cookie-notice-container {
+    display: flex;
+}
+
+#cookie-notice span {
+    font-size: 22px;
+    line-height: 30px;
+}
+#cookie-notice #cn-notice-text {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    color: #FFFFFF;
+    flex: 0 0 80%;
+    margin-bottom: 0;
+}
+#cookie-notice.cookie-notice-hidden {
+    display: none;
+}
+#cookie-notice .cn-buttons-container {
+    margin-left: auto;
+    display: flex;
+}
+.btn_cookies {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 41px;
+    color: #FF671B;
+    position: relative;
+    margin-left: auto;
+    cursor: pointer;
+    position: relative;
+    min-height: 60px;
+}
+.btn_cookies:hover {
+    color: #FF671B;
+}
+
+.btn_cookies:after {
+    display: none;
+}
+.btn_cookies .after svg {
+    fill: #FF671B;
+    max-width: 100%;
+    max-height: 100%;
+}
+.btn_cookies .after {
+    content: "";
+    /*background: url("https://www.insart.com/wp-content/themes/insart-wp/assets/images/arrow.svg");*/
+    position: absolute;
+    right: -60px;
+    bottom: -15px;
+    height: 60px;
+    width: 140px;
+    background-size: cover;
+}
+.btn_cookies:hover .after {
+    right: -70px;
+    transition: 0.35s;
+}
+.btn_cookies:not(:hover) .after {
+    transition: 0.35s;
+}
+@media only screen and (max-width: 1550px){
+    .btn_cookies {
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 1200px) {
+    #cookie-notice span {
+        font-size: 15px;
+    line-height: 20px;
+    }
+}
+@media (max-width: 768px){
+    #cookie-notice {
+        height: 60px;
+        padding-left: 10px;
+        padding-right: 70px;
+        padding-top: 8px;
+        padding-bottom: 0;
+    }
+    #cookie-notice span {
+        font-size: 10px;
+        line-height: 11px;
+    }
+    #cookie-notice .cn-button .after {
+        display: none;
+    }
+}
