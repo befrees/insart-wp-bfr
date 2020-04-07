@@ -83,9 +83,9 @@ if($fs['footer_color']){
 
 ?>
 <?php if($style): ?>
-<style>
+<?= "<style>" ?>
 <?php echo $style ?>
-</style>
+<?= "</style>" ?>
 <?php endif; ?>
 </head>
 <body <?php body_class('land-dc') ?> >
