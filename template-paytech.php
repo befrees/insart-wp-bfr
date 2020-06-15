@@ -73,7 +73,7 @@ get_header();
             </div>
 
         </div>
-
+<?php /* ?>
         <div class="collapse navbar-collapse block_menu" id="collapse">
 
             <div class="container cont2_block_menu">
@@ -191,7 +191,8 @@ get_header();
             </div>
 
         </div>
-
+        <?php */ ?>
+        <?php get_template_part('parts/_top-menu') ?>
     </section>
 
     <section class="sect_under_page">

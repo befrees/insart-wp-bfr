@@ -71,7 +71,7 @@ get_header();
             </div>
 
         </div>
-
+<?php /* ?>
         <div class="collapse navbar-collapse block_menu" id="collapse">
 
             <div class="container cont2_block_menu">
@@ -183,7 +183,8 @@ get_header();
             </div>
 
         </div>        
-
+        <?php */ ?>
+        <?php get_template_part('parts/_top-menu') ?>
     </section>
 
     <section class="sect_under_page">
@@ -631,7 +632,7 @@ get_header();
                 ?>
                 <div class="<?= $client_text['extended'] ? 'col-md-6 col-sm-6' : 'col-md-12' ?>">
 
-                    <p class="text_clients mt30 mar_30"><?php echo $client_text['main']; ?>/p>
+                    <p class="text_clients mt30 mar_30"><?php echo $client_text['main']; ?></p>
 
                 </div>
         <?php if($client_text['extended']): ?>

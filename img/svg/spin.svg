@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+  <title>spin</title>
+  <g id="c3cb4f95-99cf-4c2e-b2d0-b37eea1ec273" data-name="Слой 2">
+    <g id="5a918fd8-892b-49b2-8cc9-1226d1a2e84e" data-name="02_API_List_Desktop">
+      <g id="891edd97-7fda-4cb8-be91-9d076a83ae00" data-name="Navigation">
+        <g id="a608af80-b368-4722-a42c-30a407ef9e16" data-name="Level 1">
+          <g id="c0cbc4d9-27a2-4441-9917-a0a4f9bd8b73" data-name="Sub Level #1">
+            <g id="a23d377f-c4d8-47a6-8613-43d6db31b1ca" data-name="Spiner">
+              <circle cx="4.05" cy="4.05" r="2" transform="translate(-1.48 5.55) rotate(-60.13)" style="fill: #6dabe4;opacity: 0.8"/>
+              <circle cx="13.95" cy="13.95" r="2" transform="translate(-5.78 13.95) rotate(-45)" style="fill: #6dabe4;opacity: 0.4"/>
+              <circle cx="9" cy="2" r="2" style="fill: #6dabe4;opacity: 0.1"/>
+              <circle cx="9" cy="16" r="2" style="fill: #6dabe4;opacity: 0.5"/>
+              <circle cx="13.95" cy="4.05" r="2" transform="translate(1.22 11.05) rotate(-45)" style="fill: #6dabe4;opacity: 0.2"/>
+              <circle cx="4.05" cy="13.95" r="2" transform="translate(-8.68 6.95) rotate(-45)" style="fill: #6dabe4;opacity: 0.6000000000000001"/>
+              <circle cx="16" cy="9" r="2" style="fill: #6dabe4;opacity: 0.30000000000000004"/>
+              <circle cx="2" cy="9" r="2" style="fill: #6dabe4;opacity: 0.7000000000000001"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

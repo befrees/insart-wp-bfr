@@ -35,6 +35,7 @@ get_header();
                 </div>
             </div>
         </div>
+        <?php /* ?>
         <div class="collapse navbar-collapse block_menu" id="collapse">
             
             <div class="container cont2_block_menu">
@@ -92,6 +93,8 @@ get_header();
                 <?php if($redux_demo['twitter']) { ?> <a href="<?php echo $redux_demo ['twitter'] ?>"><img src="<?php bloginfo('template_url'); ?>/assets/images/twitter-logo.svg" alt="" /></a><?php } ?>
             </div>
         </div>
+        <?php */ ?>
+        <?php get_template_part('parts/_top-menu') ?>
     </section>
 <section class="section2">
         <div class="container-fluid">
@@ -104,31 +107,63 @@ get_header();
         </div>
     </section>
     <section class="section3">
+        <div class="container cont1_s3_ pos_rel">
+            <h2  class="t1_sect2 title-2"><?php echo get_field('title_industries'); ?></h2>
+        </div>
         <div class="container cont1_s3 pos_rel">
             <table class="table_main table_main_sect3">
+                <?php $ind_items = get_field('industries_items'); ?>
+                <?php /* ?>
                 <tr>
                 	<td class="td_first"><?php echo get_field('title_industries'); ?></td>
+                    <?php 
+                    if($ind_items)
+                    $ind_item_0 = array_shift($ind_items);
+                    if($ind_items)
+                    $ind_item_1 = array_shift($ind_items);
+                     ?>
+                    
                 	<td class="box_s3">
-                            <p class="t1_table"><?php echo get_field('industries1_title'); ?></p>
-                            <p class="t2_table"><?php echo get_field('industries1_text'); ?></p>
+                            <p class="t1_table"><?php echo $ind_item_0['title'] ? $ind_item_0['title'] : get_field('industries1_title'); ?></p>
+                            <p class="t2_table"><?php echo $ind_item_0['text'] ? $ind_item_0['text'] : get_field('industries1_text'); ?></p>
                             <div class="box_link_s3">
                                 <div class="box_hover_s3">
-                                    <p><?php echo get_field('industries1_hover'); ?></p>
-                                    <a href="<?php echo get_field('industries_link1'); ?>"><img class="arrow_s3" src="<?php bloginfo('template_url'); ?>/assets/images/arrow.svg" alt="" /></a>
+                                    <p><?php echo $ind_item_0['hover_text'] ? $ind_item_0['hover_text'] : get_field('industries1_hover'); ?></p>
+                                    <a href="<?php echo $ind_item_0['link'] ? $ind_item_0['link'] : get_field('industries_link1'); ?>"><img class="arrow_s3" src="<?php bloginfo('template_url'); ?>/assets/images/arrow.svg" alt="" /></a>
                                 </div>
                             </div>
                     </td>
                 	<td class="box_s3">
-                        <p class="t1_table"><?php echo get_field('industries2_title'); ?></p>
-                        <p class="t2_table"><?php echo get_field('industries2_text'); ?></p>
+                        <p class="t1_table"><?php echo $ind_item_1['title'] ? $ind_item_1['title'] : get_field('industries2_title'); ?></p>
+                        <p class="t2_table"><?php echo$ind_item_1['text'] ? $ind_item_1['text'] : get_field('industries2_text'); ?></p>
                         <div class="box_link_s3">
                             <div class="box_hover_s3">
-                                <p><?php echo get_field('industries2_hover'); ?></p>
-                                <a href="<?php echo get_field('industries_link2'); ?>"><img class="arrow_s3" src="<?php bloginfo('template_url'); ?>/assets/images/arrow.svg" alt="" /></a>
+                                <p><?php echo $ind_item_1['hover_text'] ? $ind_item_1['hover_text'] : get_field('industries2_hover'); ?></p>
+                                <a href="<?php echo $ind_item_1['link'] ? $ind_item_1['link'] : get_field('industries_link2'); ?>"><img class="arrow_s3" src="<?php bloginfo('template_url'); ?>/assets/images/arrow.svg" alt="" /></a>
                             </div>
                         </div>
                     </td>
+                </tr> <?php */ ?>
+                <?php if (count($ind_items)) : 
+                $items = array_chunk($ind_items, 3);
+                 ?>
+                <?php foreach ($items as $k => $row) : ?>
+                <tr>
+                <?php foreach ($row as $td => $item) : ?>
+                    <td <?= ($td==0) ? 'style="padding-left: 0;"' : '' ?> class="box_s3">
+                            <p class="t1_table"><?php echo $item['title']; ?></p>
+                            <p class="t2_table"><?php echo $item['text']; ?></p>
+                            <div class="box_link_s3">
+                                <div class="box_hover_s3">
+                                    <p><?php echo $item['hover_text']; ?></p>
+                                    <a href="<?php echo $item['link']; ?>"><img class="arrow_s3" src="<?php bloginfo('template_url'); ?>/assets/images/arrow.svg" alt="" /></a>
+                                </div>
+                            </div>
+                        </td>
+                <?php endforeach ?>
                 </tr>
+                <?php endforeach ?>
+                <?php else: ?>
                 <tr>
                 	<td style="padding-left: 0;" class="box_s3">
                         <p class="t1_table"><?php echo get_field('industries3_title'); ?></p>
@@ -161,6 +196,7 @@ get_header();
                         </div>
                     </td>
                 </tr>
+                <?php endif ?>
             </table>
         </div>
     </section>

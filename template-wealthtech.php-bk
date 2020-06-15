@@ -38,7 +38,6 @@ get_header();
             </div>
         </div>
     </div>
-    <?php /* ?>
     <div class="collapse navbar-collapse block_menu" id="collapse">
 
         <div class="container cont2_block_menu">
@@ -103,8 +102,6 @@ get_header();
                 </a><?php } ?>
         </div>
     </div>
-    <?php */ ?>
-    <?php get_template_part('parts/_top-menu') ?>
 </section>
 <section class="sect_under_page">
     <div class="container">
@@ -131,29 +128,26 @@ get_header();
         </div>
     </div>
     <div class="container ">
-        <table class="table_main table_sect7 table_expertise grid-we-dev">
+        <table class="table_main table_sect7 table_expertise">
             <?php if($comp_we_dev = get_field('comp_we_dev')):
                 $c_rows = array_chunk($comp_we_dev, 3); ?>
             <?php foreach ($c_rows as $k => $row) : ?>
                 <tr>
                 <?php foreach ($row as $i => $td) : ?>
-                    <td class="comp_we_dev__td">
-                        <div class="comp_we_dev__inner">
-                            <div class="box_expertise">
-                            <?php
-                            $image = $td['icon'];
-                            if (!empty($image)) : ?>
-                                <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
-                            <?php endif; ?>
-                            <p class="t_expertise"><?php echo $td['title'] ?></p>
+                    <td class="">
+                    <div class="box_expertise">
+                        <?php
+                        $image = $td['icon'];
+                        if (!empty($image)) : ?>
+                            <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                        <?php endif; ?>
+                        <p class="t_expertise"><?php echo $td['title'] ?></p>
+                        <div class="box_wealthtech">
+                            <div class="box_hover_wealthtech">
+                                <p><?php echo $td['text']; ?></p>
                             </div>
-                            <div class="box_wealthtech">
-                                <div class="box_hover_wealthtech">
-                                    <p><?php echo $td['text']; ?></p>
-                                </div>
-                            </div>
-                        </div> <!-- .comp_we_dev__inner -->
-                    
+                        </div>
+                    </div>
                 </td>
                 <?php endforeach ?>
             </tr>
@@ -626,7 +620,16 @@ get_header();
             </div>
             <div class="col-md-8 col-sm-8">
                 <div class="block_brokers">
-                    
+                    <!--<div class="col-md-4 col-sm-6 col-xs-6"><img class="broker1" src="<?php bloginfo('template_url'); ?>/assets/images/broker1.jpg" alt="" /></div>
+                           <div class="col-md-4 col-sm-6 col-xs-6"><img class="broker2" src="<?php bloginfo('template_url'); ?>/assets/images/broker2.jpg" alt="" /></div>
+                           <div class="col-md-4 col-sm-6 col-xs-6"><img class="broker3" src="<?php bloginfo('template_url'); ?>/assets/images/broker3.jpg" alt="" /></div>
+                           <div class="col-md-4 col-sm-6 col-xs-6"><img src="<?php bloginfo('template_url'); ?>/assets/images/broker4.jpg" alt="" /></div>
+                           <div class="col-md-4 col-sm-6 col-xs-6"><img src="<?php bloginfo('template_url'); ?>/assets/images/broker5.jpg" alt="" /></div>
+                           <div class="col-md-4 col-sm-6 col-xs-6"><img src="<?php bloginfo('template_url'); ?>/assets/images/broker6.jpg" alt="" /></div>
+                           <div class="col-md-4 col-sm-6 col-xs-6"><img class="broker7" src="<?php bloginfo('template_url'); ?>/assets/images/broker7.jpg" alt="" /></div>
+                           <div class="col-md-4 col-sm-6 col-xs-6"><img class="broker10" src="<?php bloginfo('template_url'); ?>/assets/images/broker10.jpg" alt="" /></div>
+                           <div class="col-md-4 col-sm-6 col-xs-6"><img class="broker9" src="<?php bloginfo('template_url'); ?>/assets/images/broker9.jpg" alt="" /></div>
+                           <div class="col-md-4 col-sm-6 col-xs-6"><img class="broker8" src="<?php bloginfo('template_url'); ?>/assets/images/broker8.jpg" alt="" /></div> -->
                     <?php
                     $image = get_field('custodians_logotyps');
                     if (!empty($image)) : ?>
@@ -642,7 +645,11 @@ get_header();
             </div>
             <div class="col-md-8 col-sm-8">
                 <div class="block_brokers">
-                    
+                    <!-- <div class="col-md-4 col-sm-6 col-xs-6"><img src="<?php bloginfo('template_url'); ?>/assets/images/crm1.jpg" alt="" /></div>
+                           <div class="col-md-4 col-sm-6 col-xs-6"><img class="" src="<?php bloginfo('template_url'); ?>/assets/images/crm2.jpg" alt="" /></div>
+                           <div class="col-md-4 col-sm-6 col-xs-6"><img class="" src="<?php bloginfo('template_url'); ?>/assets/images/crm3.jpg" alt="" /></div>
+                           <div class="col-md-4 col-sm-6 col-xs-6"><img src="<?php bloginfo('template_url'); ?>/assets/images/crm4.png" alt="" /></div>
+                           <div class="col-md-4 col-sm-6 col-xs-6"><img src="<?php bloginfo('template_url'); ?>/assets/images/crm5.png" alt="" /></div> -->
                     <?php
                     $image = get_field('crm_logotyps');
                     if (!empty($image)) : ?>
@@ -658,7 +665,12 @@ get_header();
             </div>
             <div class="col-md-8 col-sm-8">
                 <div class="block_brokers">
-                    
+                    <!-- <div class="col-md-4 col-sm-6 col-xs-6"><img src="<?php bloginfo('template_url'); ?>/assets/images/provider1.jpg" alt="" /></div>
+                           <div class="col-md-4 col-sm-6 col-xs-6"><img class="" src="<?php bloginfo('template_url'); ?>/assets/images/provider2.jpg" alt="" /></div>
+                           <div class="col-md-4 col-sm-6 col-xs-6"><img class="" src="<?php bloginfo('template_url'); ?>/assets/images/provider3.jpg" alt="" /></div>
+                           <div class="col-md-4 col-sm-6 col-xs-6"><img src="<?php bloginfo('template_url'); ?>/assets/images/provider4.jpg" alt="" /></div>
+                           <div class="col-md-4 col-sm-6 col-xs-6"><img src="<?php bloginfo('template_url'); ?>/assets/images/provider5.jpg" alt="" /></div>
+                           <div class="col-md-4 col-sm-6 col-xs-6"><img src="<?php bloginfo('template_url'); ?>/assets/images/provider6.jpg" alt="" /></div> -->
                     <?php
                     $image = get_field('market_data_logotyps');
                     if (!empty($image)) : ?>
@@ -738,7 +750,35 @@ get_header();
                 <?php endif; ?>
             <?php endforeach; ?>
         <?php endif; ?>
-
+        <?php /* ?>
+            <div class="row row_clients">
+                <div class="col-md-4 col-sm-4">
+                    <?php
+                    $image = get_field('featured_clients_logotyp');
+                    if (!empty($image)): ?>
+                        <img class="clients_img" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>"/>
+                    <?php endif; ?>
+                </div>
+                <div class="col-md-8 col-sm-8">
+                    <p class="text_clients"><?php echo get_field('featured_clients_text_box_1'); ?></p>
+                    <p class="text_clients text2_clients"><?php echo get_field('featured_clients_text_box_2'); ?></p>
+                </div>
+            </div>
+            <div class="row row_clients">
+                <div class="col-md-4 col-sm-4">
+                    <?php
+                    $image = get_field('featured_clients_image_avatar');
+                    if (!empty($image)): ?>
+                        <img class="clients_img" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>"/>
+                    <?php endif; ?>
+                </div>
+                <div class="col-md-8 col-sm-8">
+                    <p class="name_clients"><?php echo get_field('featured_clients_avatar_name'); ?></p>
+                    <p class="info_clients"><?php echo get_field('featured_clients_avatar_position'); ?></p>
+                    <p class="text_clients text2_clients"><?php echo get_field('featured_clients_avatar_description'); ?></p>
+                </div>
+           </div>
+            <?php */ ?>
     </div>
 </section>
 <?php if ($members = get_field('members')) : 
@@ -769,7 +809,95 @@ get_header();
                         <img src="<?php echo $member['img']['url']; ?>" alt="<?php echo $member['img']['alt']; ?>" />
                     </div>
                 <?php endforeach; ?>
-            
+            <?php /* ?>
+                <div class="col-md-2 col-sm-4">
+                                    <?php 
+                                        $image = get_field('wealthtech_club_members_logo1');
+                                        if( !empty($image) ): ?>
+                                        <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                                    <?php endif; ?>
+				</div>
+               <div class="col-md-2 col-sm-4">
+                                    <?php 
+                                        $image = get_field('wealthtech_club_members_logo2');
+                                        if( !empty($image) ): ?>
+                                        <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                                    <?php endif; ?>
+				</div>
+               <div class="col-md-2 col-sm-4">
+                                    <?php 
+                                        $image = get_field('wealthtech_club_members_logo3');
+                                        if( !empty($image) ): ?>
+                                        <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                                    <?php endif; ?>
+				</div>
+               <div class="col-md-2 col-sm-4">
+                                    <?php 
+                                        $image = get_field('wealthtech_club_members_logo4');
+                                        if( !empty($image) ): ?>
+                                        <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                                    <?php endif; ?>
+				</div>
+               <div class="col-md-2 col-sm-4">
+                                    <?php 
+                                        $image = get_field('wealthtech_club_members_logo5');
+                                        if( !empty($image) ): ?>
+                                        <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                                    <?php endif; ?>
+				</div>
+               <div class="col-md-2 col-sm-4">
+                                    <?php 
+                                        $image = get_field('wealthtech_club_members_logo6');
+                                        if( !empty($image) ): ?>
+                                        <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                                    <?php endif; ?>
+				</div>
+           </div>
+           <div class="row row2_member">
+               <div class="col-md-2 col-sm-4">
+                                    <?php 
+                                        $image = get_field('wealthtech_club_members_logo7');
+                                        if( !empty($image) ): ?>
+                                        <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                                    <?php endif; ?>
+				</div>
+               <div class="col-md-2 col-sm-4">
+                                    <?php 
+                                        $image = get_field('wealthtech_club_members_logo8');
+                                        if( !empty($image) ): ?>
+                                        <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                                    <?php endif; ?>
+				</div>
+               <div class="col-md-2 col-sm-4">
+                                    <?php 
+                                        $image = get_field('wealthtech_club_members_logo9');
+                                        if( !empty($image) ): ?>
+                                        <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                                    <?php endif; ?>
+				</div>
+               <div class="col-md-2 col-sm-4">
+                                    <?php 
+                                        $image = get_field('wealthtech_club_members_logo10');
+                                        if( !empty($image) ): ?>
+                                        <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                                    <?php endif; ?>
+				</div>
+               <div class="col-md-2 col-sm-4">
+                                    <?php 
+                                        $image = get_field('wealthtech_club_members_logo11');
+                                        if( !empty($image) ): ?>
+                                        <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                                    <?php endif; ?>
+				</div>
+               <div class="col-md-2 col-sm-4">
+                                    <?php 
+                                        $image = get_field('wealthtech_club_members_logo12');
+                                        if( !empty($image) ): ?>
+                                        <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                                    <?php endif; ?>
+				</div>
+
+<?php */ ?>
         </div>
     </div>
     <div class="container">

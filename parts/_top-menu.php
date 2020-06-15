@@ -1,38 +1,7 @@
-<?php
-get_header();
-?>
-    <section class="section_contact">
-        <header>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-4">
-                        <a href="<?php echo home_url("/"); ?>"><img class="logotip" src="<?php bloginfo('template_url'); ?>/assets/images/logotip.svg" alt="" /></a>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-8 text-right">
-                        <a class="contact_us" href="<?php echo home_url("/contacts/"); ?>">Contact Us</a>
-                       <div class="menu-btn-wrap">
-                            <button class="btn-open-menu">
-                                <i class="nav-btn"></i>
-                                <i class="nav-btn"></i>
-                                <i class="nav-btn"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <div class="wrapper-table">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 ">
-                        <p class="t1_404">404 error</p>
-                        <p class="t2_404">This webpage is not found</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <?php /* ?>
-        <div class="collapse navbar-collapse block_menu" id="collapse">
+<?php global $redux_demo;
+// global $pageCatalog; ?>
+<div class="collapse navbar-collapse block_menu" id="collapse">
+            
             <div class="container cont2_block_menu">
                 <div class="row">
                     <div class="col-md-4 col-sm-5">
@@ -66,6 +35,14 @@ get_header();
                                 'menu_class'        => 'menu2 menu2_2', 
                             ) );
                         ?>
+                        <div class="header-link-catalog">
+                            <?php wp_nav_menu([
+                                'menu' => 'Marketplace',
+                                'container' => false,
+                                // 'items_wrap' => '%3$s'
+                            ]) ?>
+                            <?php /* ?><a href="<?= get_permalink(PAGE_CATALOG) ?>">Marketplace</a> <?php */ ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -83,21 +60,8 @@ get_header();
                 </div>
             </div>
             <div class="box_social_menu">
-               <?php if($redux_demo['linkedin']) { ?> <a href="<?php echo $redux_demo ['linkedin'] ?>"><img src="<?php bloginfo('template_url'); ?>/assets/images/linkedin-logo.svg" alt="" /></a><?php } ?>
+               <?php if($redux_demo['linkedin']) { ?> <a  href="<?php echo $redux_demo ['linkedin'] ?>"><img src="<?php bloginfo('template_url'); ?>/assets/images/linkedin-logo.svg" alt="" /></a><?php } ?>
                 <?php if($redux_demo['facebook']) { ?> <a href="<?php echo $redux_demo ['facebook'] ?>"><img src="<?php bloginfo('template_url'); ?>/assets/images/facebook-logo.svg" alt="" /></a><?php } ?>
                 <?php if($redux_demo['twitter']) { ?> <a href="<?php echo $redux_demo ['twitter'] ?>"><img src="<?php bloginfo('template_url'); ?>/assets/images/twitter-logo.svg" alt="" /></a><?php } ?>
             </div>
-        </div>
-        <?php */ ?>
-        <?php get_template_part('parts/_top-menu') ?>
-    </section>
-    <script src="<?php bloginfo('template_url'); ?>/assets/js/jquery-2.1.4.min.js"></script>
-    <script src="<?php bloginfo('template_url'); ?>/assets/js/bootstrap.js"></script>
-    <script src="<?php bloginfo('template_url'); ?>/assets/js/slick.min.js"></script>
-    <script>
-        $('.btn-open-menu').on('click', function(e) {
-            e.preventDefault();
-            $('#site-header').toggleClass('open');
-        });
-    </script> 
-    
+        </div>    

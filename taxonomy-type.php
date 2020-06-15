@@ -1,50 +1,22 @@
 <?php
-/**
- * Template name: API Catalog
- */
-?>
-<?php
-$api_get = get_esc_var($_GET['api']);
-$api_tags_get = get_esc_var($_GET['api-tags']);
-$args = array(
-    'post_type' => 'company',
-    'tax_query' => array('relation' => 'AND',),
-    'posts_per_page' => 12,
-    'orderby' => ['title' =>'ASC'],
-);
-if($_GET['search']){
-    $args['title_like'] = $_GET['search'];
-}
-$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-// echo $paged;
-
-if ($paged != '') {
-    $args['paged'] = $paged;
-}
-
-if ($api_get) {
-    $args['tax_query'][] = array(
-        'taxonomy' => 'type',
-        'field' => 'id',
-        'terms' => $api_get,
-    );
-}
-if ($api_tags_get) {
-    $args['tax_query'][] = array(
-        'taxonomy' => 'api-tags',
-        'field' => 'id',
-        'terms' => $api_tags_get,
-    );
-}
-
-query_posts($args);
-// dd($wp_query);
+global $pageCatalog;
+// dd($pageCatalog);
+$term = get_queried_object();
 ?>
 <?php get_header('api') ?>
 
 <div class="wrapper">
    <div class="middle nopadding-top content-bg" id="middle">
         <div class="container-big">
+            <div class="breadcrumb">
+                <a href="<?= get_permalink(PAGE_CATALOG) ?>"><?= $pageCatalog->post_title ?></a> / 
+                <?php 
+                $thisCat = get_queried_object();
+                if ($thisCat->parent != 0)
+                    echo get_term_parents_list($thisCat->parent, 'type', ['separator'=>' / '] );
+                ?>
+                <?= $term->name ?>
+            </div>
             <div class="row-">
                 <!-- <h1 class="h1 text-center"><?php // echo get_the_title(); ?></h1> -->
                 <div class="content-catalog">
@@ -52,8 +24,6 @@ query_posts($args);
                         <?php get_template_part('parts/_api-sidebar') ?>
                     </div> <!-- .col-sidebar -->
                     <div class=" col-catalog-list" id="ajax-content">
-
-                    <?php if(have_posts()): ?>
                         <div class="row-catalog-list" id="load_more_gs">
                            <?php while (have_posts()) : the_post(); ?>
                            <?php get_template_part('/parts/_item_comp'); ?>
@@ -65,16 +35,10 @@ query_posts($args);
                        <?php endif; ?>
                         <?php bfr_pagenavi()  ?>
                         <?php wp_reset_query() ?>
-                        <?php else: ?>
-                            <?php if ($_GET['search']) : ?>
-                            <div class="text-eempty-search">
-                                <?php the_field('text_for_search') ?>
-                            </div>
-                            <?php endif ?>
-                        <?php endif; ?>
                     <div class="bottom-text-api">
-                        <?php the_content() ?>
-                        <?php //the_field('body_custom_text', $post) ?></div>
+                        <?php //the_field('body_custom_text', $post) ?>
+                        <?php echo category_description() ?>
+                    </div>
                     </div>
                </div>
             </div>

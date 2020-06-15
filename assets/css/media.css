@@ -14,6 +14,10 @@
         font-size: 60px;
         line-height: 80px;
     }
+    .header-link-catalog a {
+        font-size: 60px;
+        /* line-height: 80px; */
+    }
 
     .t_menu2 {
         font-size: 60px;
@@ -73,7 +77,9 @@
         font-size: 40px;
         line-height: 50px;
     }
-
+    .header-link-catalog a {
+        font-size: 40px;
+    }
     .t_menu2 {
         font-size: 40px;
         line-height: 50px;
@@ -411,6 +417,9 @@
     .menu_foot li a {
         font-size: 22px;
         line-height: 28px;
+    }
+    .footer-link-catalog a {
+        font-size: 22px;
     }
 
     .menu_foot2 li a {
@@ -2090,6 +2099,9 @@
         font-size: 30px;
         line-height: 30px;
     }
+    .header-link-catalog a {
+        font-size: 30px;
+    }
 
     .menu1 {
         padding: 0;
@@ -2259,6 +2271,9 @@
     .menu_foot li a {
         font-size: 18px;
         line-height: 21px;
+    }
+    .footer-link-catalog a {
+        font-size: 18px;
     }
 
     .menu_foot2 li a {
@@ -3578,6 +3593,10 @@
     .t_menu2 {
         font-size: 24px;
         line-height: 29px;
+        margin-left: 60px;
+    }
+    .header-link-catalog a {
+        font-size: 24px;
         margin-left: 60px;
     }
 

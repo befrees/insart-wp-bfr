@@ -68,7 +68,7 @@ wp_head();
             </div>
         </div>
         
-        
+        <?php /* ?>
         <div class="collapse navbar-collapse block_menu" id="collapse">
             
             
@@ -127,6 +127,8 @@ wp_head();
                 <?php if($redux_demo['twitter']) { ?> <a href="<?php echo $redux_demo ['twitter'] ?>"><img src="<?php bloginfo('template_url'); ?>/assets/images/twitter-logo.svg" alt="" /></a><?php } ?>
             </div>
         </div>
+        <?php */ ?>
+        <?php get_template_part('parts/_top-menu') ?>
     </section>
 
     <script src="<?php bloginfo('template_url'); ?>/assets/js/jquery-2.1.4.min.js"></script>

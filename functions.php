@@ -6,40 +6,39 @@
  *
  * @package insart-wp
  */
+
 // Отключаем админ панель для всех пользователей
 show_admin_bar(false);
 
 add_filter( 'big_image_size_threshold', '__return_false' );
-// Begin custom post
+
+add_action( 'wpcf7_autop_or_not', '__return_false' );
 
 //include 'inc/custom_fields.php';
+include 'inc/funcs.php';
+include 'inc/array_helper.php';
+include 'inc/form_handler.php';
+include 'inc/post_type.php';
+include 'inc/assets.php';
+include 'inc/_ajax-post-load.php';
 
-function dd($array, $die = false)
-{
-    echo "<pre>", print_r($array, 1), "</pre>";
-    if ($die)
-        die();
+add_action('pre_get_posts', 'bfr_pre_get_type');
+function bfr_pre_get_type($query){
+  if($query->is_tax && $query->is_main_query()){
+  // dd($query);
+    set_query_var('posts_per_page', 12);
+  }
+  if(isset($query->query['type'])){
+    // dd($query);
+    set_query_var('orderby', ['title'=>'ASC']);
+  }
 }
 
+$pageAddApi = bfr_get_post_by_tpl('api-add-tpl.php');
+$pageCatalog = bfr_get_post_by_tpl('catalog-tpl.php');
 
-function bfr_reset_svg($svg)
-{
-
-    $pattern = ['/<\?xml.+\?>/', '/\s(?:fill|title|style|viewBox)=\".+?\"/is', '/<svg/'];
-    $width = preg_match("/width=\"(.+?)\"/",$svg,$regs_w);
-    $height = preg_match("/height=\"(.+?)\"/",$svg,$regs_h);
-
-    $viewbox = ' viewBox="0 0 ' . $regs_w[1] . ' ' . $regs_h[1] . '" ';
-    $replacement = ['', '', '<svg ' . $viewbox];
-    $out = preg_replace($pattern, $replacement, $svg);
-    return $out;
-}
-
-function bfr_get_svg($path)
-{
-    $svg = file_get_contents($path);
-    return bfr_reset_svg($svg);
-}
+define("PAGE_ADD_API", $pageAddApi->ID);
+define("PAGE_CATALOG", $pageCatalog->ID);
 
 //add_action('wp', 'bfr_check_dc_cookie');
 
@@ -74,207 +73,6 @@ function cc_mime_types($mimes) {
 	}
 	add_filter('upload_mimes', 'cc_mime_types');
 
-function custom_post_type()
-{
-    // Members post type
-    $labels = array(
-        'name' => 'Member',
-        'singular_name' => 'Member',
-        'menu_name' => 'Members',
-        'parent_item_colon' => 'Parent item',
-        'all_items' => 'All members',
-        'view_item' => 'View member',
-        'add_new_item' => 'Add new member',
-        'add_new' => 'Add new',
-        'edit_item' => 'Edit member',
-        'update_item' => 'Update item',
-        'search_items' => 'Search item',
-        'not_found' => 'Not found',
-        'not_found_in_trash' => 'Not found in trash',
-    );
-    $args = array(
-        'label' => 'Member',
-        'description' => 'Member',
-        'labels' => $labels,
-        'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'custom-fields', 'page-attributes', 'trackbacks'),
-//        'taxonomies' => array('archive-page',),
-        'hierarchical' => false,
-        'public' => true,
-        'show_ui' => true,
-        'show_in_menu' => true,
-        'show_in_nav_menus' => false,
-        'show_in_admin_bar' => true,
-        'menu_position' => 5,
-        // 'menu_icon' => get_bloginfo('template_url') . '/img/customer_review.png',
-        'menu_icon' => 'dashicons-admin-multisite',
-        'can_export' => true,
-        'has_archive' => false,
-        'exclude_from_search' => false,
-        'publicly_queryable' => true,
-        'capability_type' => 'post',
-        //'show_in_rest' => true, // Important !
-    );
-//    register_post_type('member', $args);
-
-    // Clients post type
-    $labels = array(
-        'name' => 'Client',
-        'singular_name' => 'Client',
-        'menu_name' => 'Clients',
-        'parent_item_colon' => 'Parent item',
-        'all_items' => 'All Clients',
-        'view_item' => 'View Client',
-        'add_new_item' => 'Add new Client',
-        'add_new' => 'Add new',
-        'edit_item' => 'Edit Client',
-        'update_item' => 'Update item',
-        'search_items' => 'Search item',
-        'not_found' => 'Not found',
-        'not_found_in_trash' => 'Not found in trash',
-    );
-    $args = array(
-        'label' => 'Client',
-        'description' => 'Client',
-        'labels' => $labels,
-        'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'custom-fields', 'page-attributes', 'trackbacks'),
-//        'taxonomies' => array('archive-page',),
-        'hierarchical' => false,
-        'public' => true,
-        'show_ui' => true,
-        'show_in_menu' => true,
-        'show_in_nav_menus' => false,
-        'show_in_admin_bar' => true,
-        'menu_position' => 5,
-        // 'menu_icon' => get_bloginfo('template_url') . '/img/customer_review.png',
-        'menu_icon' => 'dashicons-admin-multisite',
-        'can_export' => true,
-        'has_archive' => false,
-        'exclude_from_search' => false,
-        'publicly_queryable' => true,
-        'capability_type' => 'post',
-        //'show_in_rest' => true, // Important !
-    );
-    register_post_type('client', $args);
-
-    
-	$labels = array(
-		'name' => 'Company',
-		'singular_name' => 'Company',
-		'menu_name' => 'Company',
-		'parent_item_colon' => 'Company',
-		'all_items' => 'All Companies',
-		'view_item' => 'Company',
-		'add_new_item' => 'Add new Company',
-		'add_new' => 'Add new',
-		'edit_item' => 'Edit Company',
-		'update_item' => 'Update Company',
-		'search_items' => 'Find by Company',
-		'not_found' => 'Не найдено',
-		'not_found_in_trash' => 'Не найдено в мусоре',
-	);
-	$args = array(
-		'label' => 'Companies',
-		'description' => 'Companies',
-		'labels' => $labels,
-		'supports' => array('title', 'editor', 'thumbnail', 'excerpt',  'custom-fields', 'page-attributes'),
-		'taxonomies' => array('type','api-tags'),
-		'hierarchical' => false,
-		'public' => true,
-		'show_ui' => true,
-		'show_in_menu' => true,
-		'show_in_nav_menus' => false,
-		'show_in_admin_bar' => true,
-		'menu_position' => 5,
-		// 'menu_icon' => get_bloginfo('template_url') . '/img/customer_review.png',
-        'menu_icon' => 'dashicons-admin-multisite',
-		'can_export' => true,
-		'has_archive' => false,
-		'exclude_from_search' => false,
-		'publicly_queryable' => true,
-		'capability_type' => 'post',
-	);
-    register_post_type('company', $args);
-    
-}
-add_action('init', 'custom_post_type', 0);
-
-
-add_action('init', 'create_type');
-
-function create_type() {
-    // заголовки
-    $labels3 = array(
-        'name' => __('Type'),
-        'singular_name' => __('Type'),
-        'all_items' => __('All types'),
-        'parent_item' => __('Parent Type'),
-        'parent_item_colon' => __('Parent Type:'),
-        'edit_item' => 'Edit Type',
-        'update_item' => 'Update Type',
-        'add_new_item' => __('Add New Type'),
-        'new_item_name' => __('New Type Name'),
-        'menu_name' => __('Type'),
-    );
-    // параметры
-    $args3 = array(
-        'label' => __('Type'), // определяется параметром $labels->name
-        'labels' => $labels3,
-        'public' => true,
-        'show_in_nav_menus' => true, // равен аргументу public
-        'show_ui' => true, // равен аргументу public
-//        'show_tagcloud' => true, // равен аргументу show_ui
-        'hierarchical' => true,
-        'tax_position' => true,
-//    'update_count_callback' => '',
-        'rewrite' => array('slug' => 'api'),
-//    'query_var'             => '',
-//        'capabilities' => array(),
-//        'meta_box_cb' => 'post_categories_meta_box', // callback функция. Отвечает за html код метабокса (с версии 3.8): post_categories_meta_box или post_tags_meta_box. Если указать false, то метабокс будет отключен вообще
-       'show_admin_column' => true, // Позволить или нет авто-создание колонки таксономии в таблице ассоциированного типа записи. (с версии 3.5)
-//        '_builtin' => true,
-//        'show_in_quick_edit' => true, // по умолчанию значение show_ui
-    );
-    register_taxonomy('type', array( 'company'), $args3);
-}
-
-add_action('init', 'create_tags_api');
-
-function create_tags_api() {
-    // заголовки
-    $labels3 = array(
-        'name' => __('Tags'),
-        'singular_name' => __('Tags'),
-        'all_items' => __('All tags'),
-        'parent_item' => __('Parent tags'),
-        'parent_item_colon' => __('Parent tags:'),
-        'edit_item' => 'Edit tags',
-        'update_item' => 'Update tags',
-        'add_new_item' => __('Add New tags'),
-        'new_item_name' => __('New tags Name'),
-        'menu_name' => __('Tags'),
-    );
-    // параметры
-    $args3 = array(
-        'label' => __('Tags'), // определяется параметром $labels->name
-        'labels' => $labels3,
-        'public' => true,
-        'show_in_nav_menus' => true, // равен аргументу public
-        'show_ui' => true, // равен аргументу public
-       'show_tagcloud' => true, // равен аргументу show_ui
-        'hierarchical' => false,
-//    'update_count_callback' => '',
-        'rewrite' => array('slug' => 'api-tags'),
-//    'query_var'             => '',
-//        'capabilities' => array(),
-//        'meta_box_cb' => 'post_categories_meta_box', // callback функция. Отвечает за html код метабокса (с версии 3.8): post_categories_meta_box или post_tags_meta_box. Если указать false, то метабокс будет отключен вообще
-       'show_admin_column' => true, // Позволить или нет авто-создание колонки таксономии в таблице ассоциированного типа записи. (с версии 3.5)
-//        '_builtin' => true,
-//        'show_in_quick_edit' => true, // по умолчанию значение show_ui
-    );
-    register_taxonomy('api-tags', array( 'company'), $args3);
-}
-
-// End custom post
 
 if ( ! function_exists( 'insart_wp_setup' ) ) :
 	/**
@@ -387,39 +185,6 @@ function insart_wp_widgets_init() {
 }
 add_action( 'widgets_init', 'insart_wp_widgets_init' );
 
-/**
- * Enqueue scripts and styles.
- */
-function insart_wp_scripts() {
-    
-	wp_enqueue_style( 'insart-wp-style', get_stylesheet_uri() );
-    wp_enqueue_style( 'insart-wp-bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.css' );
-    wp_enqueue_style( 'insart-wp-slick-theme', get_template_directory_uri() . '/assets/css/slick-theme.css' );
-	wp_enqueue_style( 'insart-wp-slick', get_template_directory_uri() . '/assets/css/slick.css' );
-	if( !is_page_template('template-static-custom.php')
-        && !is_page_template('page_landing.php')
-            && !is_page_template('page_landing_custom_thank.php' )){
-		wp_enqueue_style( 'insart-wp-style2', get_template_directory_uri() . '/assets/css/style.css' );
-    	wp_enqueue_style( 'insart-wp-media', get_template_directory_uri() . '/assets/css/media.css' );
-	}
-    if(is_page_template('page_landing.php')){
-        wp_enqueue_style( 'style-land-style', get_template_directory_uri() . '/css/style.css', array(), time() );
-        wp_enqueue_style( 'style-land', get_template_directory_uri() . '/css/land.css', array(), time() );
-        // echo '';
-    }
-
-    
-   wp_enqueue_script( 'insart-wp-jquery-2.1.4.min', get_template_directory_uri() . '/assets/js/jquery-2.1.4.min.js', array(), '1.0', true );
-    wp_enqueue_script( 'insart-wp-bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.js', array(), '1.0', true );
-    wp_enqueue_script( 'insart-wp-slick.min', get_template_directory_uri() . '/assets/js/slick.min.js', array(), '1.0', true );
-
-	//wp_enqueue_script( 'insart-wp-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'insart_wp_scripts' );
 
 /**
  * Implement the Custom Header feature.
@@ -630,10 +395,6 @@ function parse_shortcode_content( $content ) {
     return $content;
 }
 
-function bfr_clear_br($text){
-	return str_replace('</div><br>', '</div>', $text);
-}
-
 // filter emails
 
 add_filter( 'wpcf7_validate_email', 'bfr_custom_form_validation', 10, 2 );
@@ -697,27 +458,7 @@ add_filter( 'manage_posts_columns', 'bfr_AddPostsColumn', 10, 2);
 add_filter( 'manage_pages_columns', 'bfr_AddPagesColumn', 10);
 add_action( 'manage_pages_custom_column', 'bfr_AddTplValue', 10, 2 );
 
-/////////////////////////////////////////////////////////////////
 
-
-function hex2rgb($hex){
-    return list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
-}
-
-function hex2rgba($hex, $a='1'){
-    $out_arr = list($r, $g, $b) = sscanf($hex, "#%02x%02x%02x");
-    return 'rgba('. implode(',', $out_arr) .', '. $a .')';
-}
-
-function get_esc_var($var=array()){
-    if(!$var) return $var;
-    $out = array();
-    foreach($var as $k=>$v){
-        if((int)$v)
-            $out[$k] = (int) $v;
-    }
-    return $out;
-}
 
 
 /////////////////////////// Картинки в категориях //////////////////////////////////////////
@@ -860,3 +601,85 @@ function mayak_updated_category_color ( $term_id, $tt_id ) {
    update_term_meta ( $term_id, 'color', '' );
  }
 }
+
+/**
+ * Обрезка текста (excerpt). Шоткоды вырезаются. Минимальное значение maxchar может быть 22.
+ *
+ * @param string/array $args Параметры.
+ *
+ * @return string HTML
+ *
+ * @ver 2.6.5
+ */
+function bfr_excerpt( $args = '' ){
+	global $post;
+
+	if( is_string($args) )
+		parse_str( $args, $args );
+
+	$rg = (object) array_merge( array(
+		'maxchar'     => 350,   // Макс. количество символов.
+		'text'        => '',    // Какой текст обрезать (по умолчанию post_excerpt, если нет post_content.
+								// Если в тексте есть `<!--more-->`, то `maxchar` игнорируется и берется
+								// все до <!--more--> вместе с HTML.
+		'autop'       => true,  // Заменить переносы строк на <p> и <br> или нет?
+		'save_tags'   => '',    // Теги, которые нужно оставить в тексте, например '<strong><b><a>'.
+		'more_text'   => 'Читать дальше...', // Текст ссылки `Читать дальше`.
+		'ignore_more' => false, // нужно ли игнорировать <!--more--> в контенте
+	), $args );
+
+	$rg = apply_filters( 'kama_excerpt_args', $rg );
+
+	if( ! $rg->text )
+		$rg->text = $post->post_excerpt ?: $post->post_content;
+
+	$text = $rg->text;
+	// убираем блочные шорткоды: [foo]some data[/foo]. Учитывает markdown
+	$text = preg_replace( '~\[([a-z0-9_-]+)[^\]]*\](?!\().*?\[/\1\]~is', '', $text );
+	// убираем шоткоды: [singlepic id=3]. Учитывает markdown
+	$text = preg_replace( '~\[/?[^\]]*\](?!\()~', '', $text );
+	$text = trim( $text );
+
+	// <!--more-->
+	if( ! $rg->ignore_more  &&  strpos( $text, '<!--more-->') ){
+		preg_match('/(.*)<!--more-->/s', $text, $mm );
+
+		$text = trim( $mm[1] );
+
+		$text_append = ' <a href="'. get_permalink( $post ) .'#more-'. $post->ID .'">'. $rg->more_text .'</a>';
+	}
+	// text, excerpt, content
+	else {
+		$text = trim( strip_tags($text, $rg->save_tags) );
+
+		// Обрезаем
+		if( mb_strlen($text) > $rg->maxchar ){
+			$text = mb_substr( $text, 0, $rg->maxchar );
+			$text = preg_replace( '~(.*)\s[^\s]*$~s', '\\1...', $text ); // кил последнее слово, оно 99% неполное
+		}
+	}
+
+	// сохраняем переносы строк. Упрощенный аналог wpautop()
+	if( $rg->autop ){
+		$text = preg_replace(
+			array("/\r/", "/\n{2,}/", "/\n/",   '~</p><br ?/?>~'),
+			array('',     '</p><p>',  '<br />', '</p>'),
+			$text
+		);
+	}
+
+	$text = apply_filters( 'kama_excerpt', $text, $rg );
+
+	if( isset($text_append) )
+		$text .= $text_append;
+
+	return ( $rg->autop && $text ) ? "<p>$text</p>" : $text;
+}
+/* Сhangelog:
+ * 2.6.5 - Параметр ignore_more
+ * 2.6.4 - Убрал пробел между словом и многоточием
+ * 2.6.3 - Рефакторинг
+ * 2.6.2 - Добавил регулярку для удаления блочных шорткодов вида: [foo]some data[/foo]
+ * 2.6   - Удалил параметр 'save_format' и заменил его на два параметра 'autop' и 'save_tags'.
+ *       - Немного изменил логику кода.
+ */

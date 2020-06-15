@@ -35,6 +35,7 @@ get_header();
                 </div>
             </div>
         </div>
+        <?php /* ?>
         <div class="collapse navbar-collapse block_menu" id="collapse">
             <div class="container cont2_block_menu">
                 <div class="row">
@@ -90,7 +91,9 @@ get_header();
                 <?php if($redux_demo['facebook']) { ?> <a href="<?php echo $redux_demo ['facebook'] ?>"><img src="<?php bloginfo('template_url'); ?>/assets/images/facebook-logo.svg" alt="" /></a><?php } ?>
                 <?php if($redux_demo['twitter']) { ?> <a href="<?php echo $redux_demo ['twitter'] ?>"><img src="<?php bloginfo('template_url'); ?>/assets/images/twitter-logo.svg" alt="" /></a><?php } ?>
             </div>
-        </div>        
+        </div>   
+        <?php */ ?>
+        <?php get_template_part('parts/_top-menu') ?>     
     </section>
     <section class="sect_under">
         <img class="cicles_grid1_job" src="<?php bloginfo('template_url'); ?>/assets/images/cicles_grid1_job.svg" alt="" />
